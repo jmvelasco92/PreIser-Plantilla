@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block contenido %}
+
+
+<div id="cajota">
+  <div id="centrar">
+    <h3>Editar Material</h3>
+    <br>
+  <form action="" method="POST" name="f1" id="f1">
+      {% csrf_token %}
+      {{ bod.management_form }}
+      <div>
+          {{formulario|bootstrap}}
+          {% for form in bod %}
+          <div class="formset">
+              {{ form.id }}
+              <div class="form-row">
+                {{form|bootstrap}}     
+              </div>
+          </div>
+          {% endfor %}
+          <button class="btn btn-success" type="submit">Editar Material</button>
+      </div>
+  </form>  <br>
+  <a class="btn btn-secondary btn-sm" href="{% url 'vista_lista_material' %}">Regresar a la lista</a>
+</div>
+</div>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+      $('label[for="id_codigo_sena"]').hide();
+			$('#id_codigo_sena').hide();
+			$('#id_tipo_elemento').on('change',function(){
+			var selectValor = '#'+$(this).val();
+			if (selectValor=='#Devolutivo') {
+				$('label[for="id_codigo_sena"]').show();
+				$('#id_codigo_sena').show();
+				$('#id_cantidad').attr('disabled','disabled');
+			}
+			else{
+				$('#id_codigo_sena').hide();
+				$('label[for="id_codigo_sena"]').hide();
+				document.f1.id_cantidad.disabled=false;
+			}
+		});
+	});
+  </script>
+  <script >
+    $.datepicker.regional['es']={
+      closeText:'Cerrar',
+      prevText:'Anterior',
+      nextText:'Siguiente',
+      currenText:'Hoy',
+      monthNames:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+      monthNamesShort:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+      dayNames:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+      dayNamesShort:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+      dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+      firstDay:1,
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+    $('.datepicker').datepicker();
+  </script>
+{% endblock contenido %}

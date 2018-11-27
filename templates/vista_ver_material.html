@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block titulo %}
+	Detalles
+{% endblock titulo %}
+{% block contenido %}
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>Detalles
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Codigo SENA</th>
+                      <th>Numero de Serie</th>
+                      <th>Tipo de Elemento</th>
+                      <th>Cantidad</th>
+                      <th>Marca</th>
+                      <th>Categoria</th>
+                      <th>Cuentadante</th>
+                      <th>Ficha</th>
+                      <th>Disponibilidad</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Codigo SENA</th>
+                      <th>Numero de Serie</th>
+                      <th>Tipo de Elemento</th>
+                      <th>Cantidad</th>
+                      <th>Marca</th>
+                      <th>Categoria</th>
+                      <th>Cuentadante</th>
+                      <th>Ficha</th>
+                      <th>Disponibilidad</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                  	<tr>
+                  		<td>{{material.nombre}}</td>
+                  		<td>{{material.codigo_sena}}</td>
+                      <td>{{material.numero_serie}}</td>
+                  		<td>{{material.tipo_elemento}}</td>
+                  		<td>{{material.cantidad}}</td>
+                  		<td>{{material.marca}}</td>
+                  		<td>{{material.categoria}}</td>
+                  		<td>{{material.cuentadante}}</td>
+                  		<td>{{material.ficha}}</td>
+                      <td>{{material.estado}}</td>
+                  	</tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted"></div>
+    </div>
+     <a href="{% url 'vista_lista_material'%}" class="btn btn-primary btn-sm">Regresar</a>
+{% endblock contenido %}

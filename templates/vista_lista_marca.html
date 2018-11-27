@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block titulo %}
+	Lista de Marcas
+{% endblock titulo %}
+{% block contenido %}
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Lista de Marcas
+            </div>
+            <div class="card-body">
+              <div class="btn_agregar">
+	               <a href="{% url 'vista_agregar_marca' %}" class="btn btn-secondary" id="agregar">Agregar Marca</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>nombre</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>nombre</th>
+                      <th></th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                 	{% for p in lista %}
+                 		<tr>
+                 			<td>{{p.nombre}}</td>
+                 			<td>
+                        <a href="{% url 'vista_editar_marca' id_marca=p.id %}" class="btn btn-sm">
+                          <img src="{% static "imagenes/iconos/pencil-2x.png" %}">
+                        </a>
+
+                        <a href="{% url 'vista_eliminar_marca' id_marca=p.id %}" class="btn btn-sm">
+                          <img src="{% static "imagenes/iconos/trash-2x.png" %}">
+                        </a>
+                      </td>
+                 		</tr>
+                 		{% empty %}
+          						<tr>
+          							<td colspan="4">
+          								No hay Datos Registrados
+          							</td>
+          						</tr>
+                 	{% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted"></div>
+    </div>
+{% endblock contenido %}

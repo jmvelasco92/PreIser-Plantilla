@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block titulo %}
+	Agregar bodega_material
+{% endblock titulo %}
+{% block contenido %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+	{% csrf_token %}
+	{{formulario|bootstrap}}
+	<div class="col-md-3 text-center">
+		<button class="btn btn-success">Registrar</button>
+	</div>
+</form>
+<br>
+	
+{% endblock contenido %}

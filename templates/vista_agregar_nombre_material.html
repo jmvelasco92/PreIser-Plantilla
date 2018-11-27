@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block titulo %}
+	Agregar nombre material
+{% endblock titulo %}
+{% block contenido %}
+	<form action="" method="POST">
+		{% csrf_token %}
+			<div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
+                	{{formulario.nombre.errors}}
+                  <div class="form-label-group">
+                    {{formulario.nombre}}
+                    <label for="nombre">nombre</label>
+                  </div>
+                </div>
+              </div>
+           </div>
+          <button type="submit" class="btn btn-success">Registrar</button>
+	</form>
+{% endblock contenido %}

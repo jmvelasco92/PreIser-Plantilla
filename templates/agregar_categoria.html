@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block titulo %}
+Agregar Categoria
+{%endblock %}
+{%block contenido %}
+<div id="cajota">
+  <div id="centrar">
+  <h3>Agregar Categoria</h3>
+  <br>
+	<form action="" method="POST">
+		{% csrf_token %}
+			<div >
+              <div >
+                <div >
+                	{{formulario.nombre.errors}}
+                  <div class="form-label-group">
+                    {{formulario.nombre}}
+                    <label for="nombre">nombre</label>
+                  </div>
+
+                </div>
+              </div>
+           </div>
+           <br>
+          <button type="submit" class="btn btn-success">Registrar</button>
+	</form>
+</div>
+</div>
+{%endblock %}

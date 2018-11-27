@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block titulo %}
+	Reporte
+{% endblock titulo %}
+{% block contenido %}
+<div id="cajota">
+  <div id="centrar">
+	<form action="" method="POST">
+	{% csrf_token %}
+		<br>
+		<h2>Consulta de Materiales Por Fechas</h2>
+		<br>
+		DESDE
+		<input name="textfield" class="datepicker">
+		HASTA
+		<input name="textfield1" class="datepicker">
+		<button type="submit" class="btn btn-success">Buscar</button>
+		<br><br>
+		{% if info %}
+			<div >
+				<fieldset class="t1">
+					<h3>Informacion del prestamo</h3>
+					<p>Los resultados obtenidos de la busqueda de materiales en el rango de fechas <strong>{{busqueda1}}</strong> y <strong>{{busqueda2}}</strong> son las siguientes</p>
+				</fieldset>
+			</div>
+			<br>
+			<section>
+				<div >
+					<table class="table table-striped table-condensed table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th>Fecha de Prestamo</th>
+								<th>Estado</th>
+								<th>Aprendiz</th>
+								<th>Fecha de Entrega</th>
+								<th>Ver detalles</th>
+							</tr>	
+						</thead>
+						<tbody>
+							{% for l in p %}
+								<tr>
+									<td>{{l.fecha_prestamo}}</td>
+									<td>{{l.estado}}</td>
+									<td>{{l.aprendiz}}</td>
+									<td>{{l.fecha_entrega}}</td>
+									<td><a href="{% url 'ver_DetallePrestamo' id_Dprest=l.id %}">Ver Detalle Prestamo</a></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</section>		
+		{% endif %}
+		
+	</form>
+<script >
+    $.datepicker.regional['es']={
+      closeText:'Cerrar',
+      prevText:'Anterior',
+      nextText:'Siguiente',
+      currenText:'Hoy',
+      monthNames:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+      monthNamesShort:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+      dayNames:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+      dayNamesShort:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+      dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+      firstDay:1,
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+    $('.datepicker').datepicker({dateFormat : 'yy-mm-dd'});
+ </script>
+
+{% endblock contenido %}

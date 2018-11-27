@@ -1,0 +1,54 @@
+{%extends "base.html"%}
+{%block titulo %}
+{%endblock %}
+
+{%block contenido %}
+
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>Detalles
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Material</th>
+                      <th>Bodega</th>
+                      <th>fecha de Ingreso</th>
+                      <th>Fechad de salida</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Material</th>
+                      <th>Bodega</th>
+                      <th>fecha de Ingreso</th>
+                      <th>Fechad de salida</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                 	{% for p in lista %}
+                 		<tr>
+                 			<td>{{p.material}}</td>
+                 			<td>{{p.bodega}}</td>
+                 			<td>{{p.fecha_ingresa}}</td>
+                 			<td>{{p.fecha_salida}}</td>
+                 			<td><a href="{% url 'editar_bodega_material' id_bdm=p.id %}" class="btn btn-primary btn-sm">Editar</a></td>
+                 			<td><a href="{% url 'eliminarr_bodega_material' id_bdm=p.id %}" class="btn btn-primary btn-sm">Eliminar</a></td>
+                 		</tr>
+                 		{% empty %}
+          						<tr>
+          							<td colspan="4">
+          								No hay Datos Registrados
+          							</td>
+          						</tr>
+                 	{% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted"></div>
+    </div>
+    <a href="{% url 'agr_bodega_materiall'%}" class="btn btn-primary btn-sm">Agregar Bodega_Material</a>
+{%endblock%}

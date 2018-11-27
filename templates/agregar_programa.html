@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{%block titulo%}
+	agregar programa
+
+{%endblock%}
+
+{%block contenido%}
+<div id="cajota">
+  <div id="centrar">
+    <h3>Agregar Programa</h3>
+  <br>
+	<form action="" method="POST">
+		{% csrf_token %}
+		    <div >
+              <div >
+                <div >
+                	{{formulario.nombre.errors}}
+                  <div class="form-label-group">
+                    {{formulario.nombre}}
+                    <label for="nombre">nombre</label>
+                  </div>
+                </div>
+              </div>
+           </div>
+           <br>
+        <button class="btn btn-success">Registrar Programa</button>
+        
+	</form>
+  <br>
+	<a href="{% url 'vista_lista_programas'%}" class="btn btn-primary">Regresar</a>
+  
+</div>
+</div>
+{%endblock%}

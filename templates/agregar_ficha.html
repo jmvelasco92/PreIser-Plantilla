@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{%block titulo %}
+Agregar Ficha
+{%endblock%}
+
+{%block contenido %}
+<div id="cajota">
+  <div id="centrar">
+  <h3>Agregar Ficha</h3>
+  <br>
+	<form action="" method="POST">
+		{% csrf_token %}
+			<div class="form-group">
+          <div >
+            <div >
+            	{{formulario.numero_ficha.errors}}
+              <div class="form-label-group">
+                {{formulario.numero_ficha}}
+                <label for="ficha">Numero de Ficha</label>
+              </div>
+            </div>
+          </div>
+      </div>
+
+           <div class="form-group">
+              <div >
+                <div >
+                	{{formulario.fecha_inicio.errors}}
+                  <div class="form-label-group">
+                    {{formulario.fecha_inicio}}
+                    <label for="fecha_inicio">Fecha de Inicio</label>
+                  </div>
+                </div>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <div >
+                <div >
+                	{{formulario.fecha_finalizacion.errors}}
+                  <div class="form-label-group">
+                    {{formulario.fecha_finalizacion}}
+                    <label for="fecha_finalizacion">Fecha de Finalizacion</label>
+                  </div>
+                </div>
+              </div>
+           </div>
+
+            <div class="form-group">
+              <div >
+                <div >
+                	{{formulario.estado.errors}}
+                  <div class="form-label-group">
+                    {{formulario.estado}}
+                    <label for="{{formulario.estado.id_for_label}}">Estado</label>
+                  </div>
+                </div>
+              </div>
+           </div>
+
+           <div class="form-group">
+              <div >
+                <div >
+                	{{formulario.programa.errors}}
+                  <div class="form-label-group">
+                    {{formulario.programa|bootstrap}}
+                  </div>
+                </div>
+              </div>
+           </div>
+           <button type="submit" class="btn btn-success">Registrar Ficha</button>
+	</form>
+</div>
+</div>
+<script type="text/javascript">
+  $('.datepicker').datepicker();
+</script>
+{%endblock %}

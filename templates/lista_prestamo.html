@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block titulo %}
+	Lista de Prestamos
+{% endblock titulo %}
+{% block contenido %}
+ <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Lista de Prestamos</div>
+            <div class="card-body">
+              <div class="btn_agregar">
+                <a href="{% url 'agregar_prestamo' %}" class="btn btn-secondary" id="agregar">Agregar Prestamo</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Fecha del Prestamo</th>
+                      <th>Estado</th>
+                      <th>Aprendiz</th>
+                      <th>Fecha de Entrega</th>
+                      <th>Funciones</th>
+                     
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Fecha del Prestamo</th>
+                      <th>Estado</th>
+                      <th>Aprendiz</th>
+                      <th>Fecha de Entrega</th>
+                      <th>Funciones</th>
+                      
+
+                    </tr>
+                  </tfoot>
+                  <tbody>
+						{% for p in lista %}
+
+							 <tr>
+                      		<td>{{p.fecha_prestamo}}</td>
+                      		<td>{{p.estado}}</td>
+			                    <td>{{p.aprendiz}}</td>
+			                    <td>{{p.fecha_entrega}}</td>
+			                    <td>
+                            <a href="{% url 'editar_prestamo' id_prest=p.id %}" class="btn btn-sm">
+                              <img src="{% static "imagenes/iconos/pencil-2x.png" %}">
+                            <a>
+
+                            <a href="{% url 'devolucion_prestamo' id_prest=p.id %}" class="btn btn-sm">
+                              <img src="{% static "imagenes/iconos/action-undo-2x.png" %}">
+                            <a> 
+                            
+                            <a  class="btn btn-sm" href="{% url 'eliminar_prestamo' id_prest=p.id %}">
+                             <img src="{% static "imagenes/iconos/trash-2x.png" %}">
+                            </a>
+                            
+                              
+
+                          </td>
+
+			                    
+			              	</tr>
+
+						    {% endfor %}                  	
+                   
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+ 
+	
+
+{% endblock contenido %}

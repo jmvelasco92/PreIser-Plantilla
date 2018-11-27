@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block titulo %}
+	
+{% endblock titulo %}
+{% block contenido %}
+<div id="cajota">
+  <div id="centrar">
+	<form action="" method="POST">
+		<div>
+			{{formulario|bootstrap}}	
+		</div>
+		{{formset.managent_form}}
+		<div>
+			{% for form in formset %}
+				<div class="link-formset">
+					{{form.id}}
+					<ul>
+						<div class="row">
+							<div class="col-6">{{form.material|bootstrap}}</div>
+							<div class="col-2">{{form.cantidad|bootstrap}}</div>
+						</div>
+					</ul>
+				</div>
+			{% endfor %}
+			<a href="{%url 'vista_reporte' %}" class="btn btn-success">Volver</a>
+		</div>
+	</form>	
+</div>
+</div>
+{% endblock contenido %}

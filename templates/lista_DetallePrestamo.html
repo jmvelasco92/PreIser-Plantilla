@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block titulo %}
+
+	
+{% endblock titulo %}
+{% block contenido %}
+	{% for d in lista %}
+			material: {{d.material}}
+			prestamo: {{d.prestamo}}
+			nombre: {{d.nombre}}
+			estado: {{d.estado}}
+			descripcion: {{d.descripcion}}
+			tipo de daño: {{d.tipo_dano}}
+			fecha limite: {{d.fecha_limite}}			
+			fecha de entrega: {{d.fecha_entrega}}
+	{% endfor %}		
+	<br>
+	<a class="waves-effect waves-light btn red" href="{% url 'agregar_DetallePrestamo' %}">AGR_detalle_prestamo</a>
+	<br>
+	<br>
+		
+{% endblock contenido %}

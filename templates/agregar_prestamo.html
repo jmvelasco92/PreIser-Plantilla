@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% block titulo %}
+ Prestamo
+{% endblock titulo %}
+{% block contenido %}
+<div id="cajota">
+  <div id="centrar">
+      <form action="" method="POST" >
+          
+        {% csrf_token %}
+            <div >
+                  <h3>Agregar Prestamo</h3>
+                  <br>
+                {{formulario|bootstrap}}
+          
+                {{ formset.management_form }}
+            </div> 
+            <div >
+                    <h5 id="texto">No se permite repetir elementos</h5> 
+                  {% for form in formset %}                
+                        <div class="link-formset">
+                          <fieldset id="f">
+                            {{ form.id }}
+                            <ul>
+                                <div class="row">
+                                  <div class="col-5">{{form.material|bootstrap}}</div>
+                                  <div class="col-5">{{form.cantidad|bootstrap}}</div>
+                                  <div class="col-2">{{form.DELETE|bootstrap}}</div>                              
+                                </div>                
+                            </ul>
+                            </fieldset>
+                        </div>
+                    
+                  {% endfor %}       
+            </div>
+                    
+        <br>
+        <input type="submit" value="AGREGAR PRESTAMO">
+       
+
+  </form>
+
+  </div>
+</div>
+
+  
+
+
+
+
+
+
+
+  
+    <script>
+    $('.link-formset').formset({
+        addText: 'Agregar Elemento',
+        deleteText: 'eliminar'
+    });
+</script>
+  <script >
+    $.datepicker.regional['es']={
+      closeText:'Cerrar',
+      prevText:'Anterior',
+      nextText:'Siguiente',
+      currenText:'Hoy',
+      monthNames:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+      monthNamesShort:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+      dayNames:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+      dayNamesShort:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+      dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+      firstDay:1,
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+    $('.datepicker').datepicker();
+  </script>
+{% endblock contenido %}
